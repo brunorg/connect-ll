@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery - Connected Large Lists Plugin</title>
+
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/i18n/jquery-ui-i18n.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="css/connect-ll.css" type="text/css" media="all" />
+    <script type="text/javascript" src="js/jquery-connect-ll-1.0.0.js"></script>
+
+    <style type="text/css">
+      body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 50px; background-color: #ebebdd;}
+    </style>
+
+    <script type="text/javascript">
+
+      function buildOList(data, nextPage) {
+        var str = ''
+          for(x = 0; x < 3000; x++) {
+            str += '<option value="'+x+'">Item '+((nextPage*100)+x)+'</option>';
+          }
+        return str;
+      }
+
+$(function() {
+
+    $("#myList").html(buildOList(null,0));
+    $("#myList").connect_ll();
+
+    $("#myList2").html(buildOList(null,0));
+    $("#myList2").connect_ll();
+
+    });
+
+</script>
+
+</head>
+<body>
+  <form action="index.html" method="post" accept-charset="utf-8">
+
+    <h1>jQuery - Connected Large Lists Plugin</h1>
+
+    <h3>Connected Lists 1</h3>
+    <div style="width: 60%">
+      <select id="myList" name="myList" style="overflow: auto; width: 200px" size="20" multiple="multiple">
+      </select>
+    </div>
+
+
+    <h3>Connected Lists 2</h3>
+    <div style="width: 80%">
+      <select id="myList2" name="myList2" style="overflow: auto; width: 200px" size="20" multiple="multiple">
+      </select>
+    </div>
+
+  </form>
+
+</body>
+</html>

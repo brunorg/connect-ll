@@ -1,0 +1,39 @@
+.ui-selecting { background: #a3a3a3 !important; }
+.ui-selected { background: #F39814 !important; color: white !important; }
+
+.connectlist { background-color: #ddd; list-style-type: none; margin: 0; padding: 0; }
+
+.connectlistTop { background-color: #aaa; }
+
+.connectlistLeft {}
+.connectlistRight {}
+
+.connectlist div { background-color: #ddd; position: static }
+
+.connectlist li {
+  position: relative;
+  right: 0px;
+	margin: 0;
+  padding: 0;
+  padding-left: 2px;
+	cursor: default;
+	line-height: 25px;
+	height: 25px;
+	font-size: 11px;
+	list-style: none;
+}
+
+.connectlistLeft span {
+  position: absolute;
+  right: 2px;
+}
+
+.connectlistLeft button {
+  position: absolute;
+  right: 2px;
+}
+
+.connectlistLeft button span {
+  left: 50% !important;
+}
+
