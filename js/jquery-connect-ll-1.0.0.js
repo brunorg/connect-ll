@@ -157,15 +157,15 @@
       var selected = $this.find('option:not(:selected)');
       var unselected = $this.find('option:selected');
 
-      console.time('building html');
+      //console.time('building html');
       var leftList = buildLeftList(e, selected);
       var toolBar = buildElements(e);
       var rightList = buildRightList(e, unselected);
-      console.timeEnd('building html');
+      //console.timeEnd('building html');
 
-      console.time('insert into DOM');
+      //console.time('insert into DOM');
       $this.after('<div>'+leftList+toolBar+rightList+'</div><div style="clear: both"></div>').hide();
-      console.timeEnd('insert into DOM');
+      //console.timeEnd('insert into DOM');
 
       leftList = $("#"+e.idLeftList);
       rightList = $("#"+e.idRightList);
