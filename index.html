@@ -32,10 +32,9 @@ $(function() {
     $("#myList").html(buildOList(null,0));
     $("#myList").connect_ll();
 
-    $("#myList2").html(buildOList(null,0));
     $("#myList2").connect_ll();
 
-    });
+});
 
 </script>
 
@@ -51,10 +50,17 @@ $(function() {
       </select>
     </div>
 
-
-    <h3>Connected Lists 2</h3>
+    <h3>Connected Lists 2 - Pre selected itens</h3>
     <div style="width: 80%">
-      <select id="myList2" name="myList2" size="10" multiple="multiple">
+      <select id="myList2" name="myList2" size="10" multiple="multiple" style="display: none; ">
+        <option value="0">Item 0</option>
+        <option value="1" selected="selected">Item 1</option>
+        <option value="2" selected="selected">Item 2</option>
+        <option value="3">Item 3</option>
+        <option value="4">Item 4</option>
+        <option value="5" selected="selected">Item 5</option>
+        <option value="6">Item 6</option>
+        <option value="7">Item 7</option>
       </select>
     </div>
 
