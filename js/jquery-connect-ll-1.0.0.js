@@ -1,8 +1,11 @@
 (function( $ ){
 
-  $.fn.connect_ll = function(options) {
+  //$.fn.connect_ll = function(options) {
+  var methods = {
+    init : function( options ) {
 
     var settings = {
+      filterDelay: 1000,
       url: '',
       page: 0,
       records: 0,
@@ -15,11 +18,11 @@
     };
 
     function buildListItem(id, text) {
-      return '<li class="ui-widget ui-state-default" id="'+id+'" >'+text+'</li>';
+      return '<li class="ui-widget ui-state-default ui-corner-all" id="'+id+'" >'+text+'</li>';
     }
 
-    function buildList(name, optionList, class) {
-      var str = '<ul id="'+name+'" class="connectlist '+class+'" style="width: 100%;" >';
+    function buildList(name, optionList) {
+      var str = '<ul id="'+name+'">';
       optionList.each(function(index) {
         str += buildListItem(optionList[index].value, optionList[index].text);
       });
@@ -30,12 +33,12 @@
     function buildLeftList(e, optionList) {
       var str = '';
       str += '<div style="float: left; width: 45%;" >';
-      str += '<div class="connectlistTop ui-corner-top" style="position: relative; height: 35px;" >';
-      str += '<input id="'+e.idFilter+'" type="text" style="position: absolute; left: 5px; top: 3px;" />' ;
-      str += '<button  id="'+e.idButtonAddAll+'" style="position: absolute; right: 5px; top: 3px;" >Add All</button>' ;
+      str += '<div class="connect-ll-top-left ui-corner-top" >';
+      str += '<input class="connect-ll-filter" id="'+e.idFilter+'" type="text" />' ;
+      str += '<button  id="'+e.idButtonAddAll+'"  >Add All</button>' ;
       str += '</div>';
-      str += '<div class="connectlist" style="height: '+e.height+'px; overflow-y: auto; " >';
-      str += buildList(e.idLeftList, optionList, 'connectlistLeft') ;
+      str += '<div class="connect-ll connect-ll-left" style="height: '+e.height+'px; " >';
+      str += buildList(e.idLeftList, optionList) ;
       str += '</div>' ;
       str += '</div>' ;
       return str;
@@ -44,11 +47,11 @@
     function buildRightList(e, optionList) {
       var str = '';
       str += '<div style="float: left; width: 45%;" >';
-      str += '<div class="connectlistTop ui-corner-top" style="height: 35px;">';
-      str += '<button id="'+e.idButtonDelAll+'" style="left: 5px; top: 3px;" >Remove All</button>' ;
+      str += '<div class="connect-ll-top-right ui-corner-top" >';
+      str += '<button id="'+e.idButtonDelAll+'" >Remove All</button>' ;
       str += '</div>';
-      str += '<div class="connectlist" style="height: '+e.height+'px; overflow: auto;" >' ;
-      str += buildList(e.idRightList, optionList, 'connectlistRight') ;
+      str += '<div class="connect-ll connect-ll-right" style="height: '+e.height+'px;" >' ;
+      str += buildList(e.idRightList, optionList) ;
       str += '</div>' ;
       str += '</div>' ;
       return str;
@@ -57,7 +60,7 @@
     function buildElements(e) {
       var str = '';
       str += '<div id="'+e.idButtonToolBar+'" style="float: left; padding: 2px;" >' ;
-      str += ' <div style="height: '+((e.height/2)-25)+'px;" >&nbsp;</div>' ;
+      str += ' <div style="height: '+((e.height/2)-30)+'px;" >&nbsp;</div>' ;
       str += ' <div><button id="'+e.idButtonAdd+'" >&gt;</button></div>' ;
       str += ' <div><button id="'+e.idButtonDel+'" >&lt;</button></div>' ;
       str += ' <input type="checkbox" id="'+e.idCheckAddAll+'" name="'+e.idCheckAddAll+'" value="true" style="display: none;">' ;
@@ -76,7 +79,7 @@
 
         if ($list.data('side') == 'left') {
 
-          var $button = $('<button class="ui-widget-content ui-corner-all ui-state-active" onclick="return false;" > &plus; </button>');
+          var $button = $('<button class="ui-widget-content ui-corner-all ui-state-active" onclick="return false;" > + </button>');
           $button.click(function() {
             $target.removeClass('ui-selected');
             $target.find('span').remove();
@@ -86,11 +89,11 @@
             return false;
           });
 
-          $target.append($('<span>').append($button));
+          $target.append($('<span></span>').append($button));
 
         } else {
 
-          var $button = $('<button class="ui-widget-content ui-corner-all ui-state-active" onclick="return false;" > &minus; </button>');
+          var $button = $('<button class="ui-widget-content ui-corner-all ui-state-active" onclick="return false;" > - </button>');
           $button.click(function() {
             $($list.data('check')).removeAttr('checked');
             $target.removeClass('ui-selected');
@@ -101,7 +104,7 @@
             return false;
           });
 
-          $target.prepend($('<span>').append($button));
+          $target.prepend($('<span></span>').append($button));
 
         }
       }
@@ -131,7 +134,9 @@
       });
     }
 
-    return this.each(function() {
+
+      return this.each(function(){
+
       if ( options ) {
         $.extend( settings, options );
       }
@@ -142,7 +147,7 @@
       var name = $this.attr('name');
       var e = {
         name: name,
-        height: $this.height(),
+        height: $this.attr('size')*25,
         idButtonToolBar: name + 'ButtonToolBar',
         idFilter: name + 'Filter',
         idLeftList : name + 'LeftList',
@@ -164,11 +169,14 @@
       //console.timeEnd('building html');
 
       //console.time('insert into DOM');
-      $this.after('<div>'+leftList+toolBar+rightList+'</div><div style="clear: both"></div>').hide();
+      $this.after('<div class="connect-ll">'+leftList+toolBar+rightList+'</div><div style="clear: both"></div>').hide();
       //console.timeEnd('insert into DOM');
 
       leftList = $("#"+e.idLeftList);
       rightList = $("#"+e.idRightList);
+
+      $this.data('leftList', leftList);
+      $this.data('rightList', rightList);
 
       leftList.data('side', 'left');
       leftList.data('optionList', $this);
@@ -183,7 +191,7 @@
         leftList.find('span').remove();
       });
       rightList.click(clickHandler).mouseover(mouseOverHandler).mouseleave(function () {
-        leftList.find('span').remove();
+        rightList.find('span').remove();
       });
 
       $("#"+e.idButtonAddAll).button().click(function() {
@@ -227,6 +235,7 @@
       });
 
       var filter = function() {
+        //console.log('Executando filtro');
         $("#"+e.idLeftList+" li").show();
         var value = $("#"+e.idFilter).val();
         if (value) {
@@ -237,9 +246,11 @@
         }
       };
 
-      $("#"+e.idFilter).keyup(function(){
-        clearTimeout(filter);
-        setTimeout(filter, 500);
+      $filter = $("#"+e.idFilter);
+
+      $filter.keyup(function(){
+        clearTimeout($filter.data('filter'));
+        $filter.data('filter', setTimeout(filter, s.filterDelay));
       });
 
       if (s.url) {
@@ -248,7 +259,90 @@
 
     });
 
+    },
+    addItem : function(id, value) {
+      function buildListItem(id, text) {
+        return '<li class="ui-widget ui-state-default" id="'+id+'" >'+text+'</li>';
+      }
+
+      return this.each(function(){
+
+        var $this = $(this);
+        var $leftList = $this.data('leftList');
+        var $rightList = $this.data('rightList');
+
+        var option = $this.find('option[value="'+id+'"]');
+        if (option.length == 0) {
+          option = $('<option value="'+id+'">'+value+'</option>');
+          $this.append(option);
+        }
+
+        if (option.attr('selected')) {
+          $rightList.find('#'+id).remove();
+          $rightList.append(buildListItem(id,value));
+        } else {
+          $leftList.find('#'+id).remove();
+          $leftList.append(buildListItem(id,value));
+        }
+
+      });
+
+    },
+    addItens : function(list, keyStr, valueStr) {
+        function buildListItem(id, text) {
+          return '<li class="ui-widget ui-state-default" id="'+id+'" >'+text+'</li>';
+        }
+
+        return this.each(function(){
+
+          var $this = $(this);
+          var $leftList = $this.data('leftList');
+          var $rightList = $this.data('rightList');
+
+          var optionHTML = '';
+          var leftListHTML = '';
+          var rightListHTML = '';
+          
+          $.each(list, function() {
+        	  var id = this[keyStr];
+        	  var value = this[valueStr];
+
+              var $option = $this.find('option[value="'+id+'"]');
+
+              if ($option.length == 0) {
+            	optionHTML += $('<option value="'+id+'">'+value+'</option>');
+              }
+              
+              if ($option.length > 0 && $option.attr('selected')) {
+            	  rightListHTML += buildListItem(id,value);
+              } else {
+            	  leftListHTML += buildListItem(id,value);
+              }        	  
+
+          });
+
+          $this.append(optionHTML);
+          $leftList.append(leftListHTML);
+          $rightList.append(rightListHTML);
+
+        });
+
+      }
+
   };
+
+  $.fn.connect_ll = function( method ) {
+
+    if ( methods[method] ) {
+      return methods[method].apply( this, Array.prototype.slice.call( arguments, 1 ));
+    } else if ( typeof method === 'object' || ! method ) {
+      return methods.init.apply( this, arguments );
+    } else {
+      $.error( 'Method ' +  method + ' does not exist on jQuery.connect_ll' );
+    }
+
+  };
+
 
 })( jQuery );
 
