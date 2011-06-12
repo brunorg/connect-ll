@@ -1,0 +1,51 @@
+h1. What is Connected Large Lists Plugin?
+
+jQuery Connect Large Lists is a jQuery plugin that creates a connect list using a single select/option. Moreover the plugin creates a filter useful for lists that contains a large amount of itens.
+
+h1. How to use
+
+You need few lines to use the jQuery Connect Large Lists plugin.
+
+h2. First: Import the JavaScript and CSS plugin files into your HTML code.
+
+<pre>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/i18n/jquery-ui-i18n.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="css/connect-ll.css" type="text/css" media="all" />
+    <script type="text/javascript" src="js/jquery-connect-ll-1.0.0.js"></script>
+	</head>
+</pre>
+
+h2. Second: write the code for the select/option
+
+<pre>
+  <select id="myList" name="myList" size="10" multiple="multiple" style="display: none; ">
+    <option value="0">Item 0</option>
+    <option value="1" selected="selected">Item 1</option>
+    <option value="2" selected="selected">Item 2</option>
+    <option value="3">Item 3</option>
+    <option value="4">Item 4</option>
+    <option value="5" selected="selected">Item 5</option>
+    <option value="6">Item 6</option>
+    <option value="7">Item 7</option>
+    ...
+    <option value="n">Item n</option>
+  </select>
+</pre>
+
+h2. Third: you need to call the jQuery connect_ll() function on a selector
+
+<pre>
+	<script type="text/javascript" charset="utf-8">
+		$(function(){
+			$("#myList").connect_ll();
+		});
+	</script>
+</pre>
+
