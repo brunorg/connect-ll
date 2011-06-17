@@ -2,40 +2,40 @@
 .ui-selected { background: #F39814 !important; color: white !important; }
 
 .connect-ll {
-  background-color: #ddd;
-  text-align: left;
+	background-color: #ddd;
+	text-align: left;
 }
 
 .connect-ll ul {
-  list-style-type: none;
-  padding-left: 0;
-  margin: 0;
-  width: 100%;
+	list-style-type: none;
+	padding-left: 0;
+	margin: 0;
+	width: 100%;
 }
 
 .connect-ll-top-left, .connect-ll-top-right {
-  background-color: #aaa;
-  position: relative;
-  height: 30px;
+	background-color: #aaa;
+	position: relative;
+	height: 30px;
 }
 
 .connect-ll-top-left button {
-  position: absolute;
-  top: 2px;
-  right: 5px;
+	position: absolute;
+	top: 2px;
+	right: 5px;
 }
 
 .connect-ll-top-right button {
-  position: absolute;
-  top: 2px;
-  left: 5px;
+	position: absolute;
+	top: 2px;
+	left: 5px;
 }
 
 .connect-ll-filter {
-  position: absolute;
-  top: 2px;
-  left: 5px;
-  height: 20px;
+	position: absolute;
+	top: 2px;
+	left: 5px;
+	height: 20px;
 }
 
 .connect-ll-left, .connect-ll-right { overflow: auto; }
@@ -43,32 +43,32 @@
 .connectlist div { background-color: #ddd; position: static }
 
 .connect-ll li {
-  position: relative;
-  right: 0px;
-  padding-left: 2px;
-  cursor: default;
-  line-height: 25px;
-  height: 25px;
-  font-size: 11px;
-  list-style: none;
+	position: relative;
+	right: 0px;
+	padding-left: 2px;
+	cursor: default;
+	line-height: 25px;
+	height: 25px;
+	font-size: 11px;
+	list-style: none;
 }
 
 .connect-ll button {
-  min-width: 25px;
-  min-height: 20px;
-  margin: 2px;
-  cursor: pointer;
-  opacity: 0.85;
-  filter: alpha(opacity=85);
+	min-width: 25px;
+	min-height: 20px;
+	margin: 2px;
+	cursor: pointer;
+	opacity: 0.85;
+	filter: alpha(opacity=85);
 }
 
 .connect-ll-left button {
-  position: absolute;
-  right: 2px;
+	position: absolute;
+	right: 2px;
 }
 
 .connect-ll-right button {
-  position: absolute;
-  left: 2px;
+	position: absolute;
+	left: 2px;
 }
 

@@ -6,7 +6,7 @@ h1. How to use
 
 You need few lines to use the jQuery Connect Large Lists plugin.
 
-h2. First: Import the JavaScript and CSS plugin files into your HTML code.
+h2. #1: Import the JavaScript and CSS plugin files into your HTML code.
 
 <pre>
 	<head>
@@ -22,7 +22,7 @@ h2. First: Import the JavaScript and CSS plugin files into your HTML code.
 	</head>
 </pre>
 
-h2. Second: write the code for the select/option
+h2. #2: Write the code for the select/option
 
 <pre>
   <select id="myList" name="myList" size="10" multiple="multiple" style="display: none; ">
@@ -39,7 +39,7 @@ h2. Second: write the code for the select/option
   </select>
 </pre>
 
-h2. Third: you need to call the jQuery connect_ll() function on a selector
+h2. #3: Call the jQuery connect_ll() function on a selector
 
 <pre>
 	<script type="text/javascript" charset="utf-8">
